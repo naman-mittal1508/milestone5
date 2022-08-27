@@ -1,0 +1,56 @@
+<mat-card>
+    <mat-card-title>Add Vehicle</mat-card-title>
+    
+    <form class="example-form" [formGroup]="vehicleForm" (ngSubmit)="addVehicle()">
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Vehicle Name</mat-label>
+                <input matInput placeholder="Enter Vehicle Name" formControlName="vehicleName">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Registration Number</mat-label>
+                <input matInput placeholder="Enter Registration Number" formControlName="vehicleRegistrationNo">                                
+            </mat-form-field>
+        </p>
+        <p>
+            <label >Vehicle Type</label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="vehicleType">
+                <mat-radio-button value="TwoWheeler"  class="example-radio-button">
+                    Two Wheeler
+                </mat-radio-button>
+                <mat-radio-button value="FourWheeler" class="example-radio-button">
+                    Four Wheeler
+                </mat-radio-button>
+            </mat-radio-group>
+        </p>
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Select State</mat-label>
+                <mat-select [(ngModel)]="selectedValue" formControlName="state">
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Select City</mat-label>
+                <mat-select [(ngModel)]="selectedValue" formControlName="city">
+                  <mat-option *ngFor="let city of cities" [value]="city.value">
+                    {{city.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </p>
+        <p>
+            <button mat-raised-button color="accent" [disabled]="vehicleForm.invalid">SUBMIT</button>
+        </p>
+    </form>    
+  </mat-card>
+
+  <p>Vehicles Registered</p>
+{{vehicles | json}}
+    
